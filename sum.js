@@ -1,10 +1,8 @@
 function sum() {
-	var agg = 0;
-	return function() {
-		agg = (arguments.length === 0)?(agg):(agg+arguments[0]);
-	return agg;};
+  var agg = 0;
+  function innerAgg () {
+	agg = (arguments.length === 0)?(agg):(agg+arguments[0]);
+	return innerAgg; };
+  innerAgg.valueOf = function() { return agg; };
+  return innerAgg;
 }
-//fn=sum();
-//fn(10);
-//fn(1);
-//fn();
